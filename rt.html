@@ -792,7 +792,8 @@ footer{
 
 <script>
 /* ==================== CONFIGURATION ==================== */
-const NOMOR_WA_RT = "6285868147692"; 
+const NOMOR_WA_RT = "62xxxxxxxxxx"; 
+const FITUR_WA_AKTIF = false;
 
 // GANTI DENGAN URL WEB APP GOOGLE APPS SCRIPT YANG SUDAH KAMU DEPLOY
 const SCRIPT_URL_SHEETS = "https://script.google.com/macros/s/AKfycbz7WnQlkaEbwWCfIrzy4I-1VVwzTvYZ0WC12ISLMYbmMCTB0iLwrofQXKEiktK4WeWw/exec"; 
@@ -850,6 +851,14 @@ function closeFormSurat() {
 function prosesSurat(event) {
   event.preventDefault();
   
+  // JIKA FITUR WA MATI (false), JALANKAN PESAN PENGEMBANGAN INI
+  if (!FITUR_WA_AKTIF) {
+    alert("Mohon maaf, fitur ini belum tersedia dalam mode pengembangan.");
+    closeFormSurat();
+    return; // Berhenti di sini, tidak jadi buka WhatsApp
+  }
+  
+  // JIKA FITUR WA AKTIF (true), KODE DI BAWAH INI AKAN BERJALAN NORMAL
   const nama = document.getElementById('wargaNama').value;
   const nik = document.getElementById('wargaNik').value;
   const ttl = document.getElementById('wargaTtl').value;
