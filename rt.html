@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>RT 03 RW 01 — Balaipanjang</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050816;
+  --bg2:#0b1020;
+  --card:rgba(255,255,255,.05);
+  --border:rgba(255,255,255,.08);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.62);
+  --primary:#7c3aed;
+  --primary2:#06b6d4;
+  --shadow: 0 10px 40px rgba(0,0,0,.45);
+  --radius:28px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background: linear-gradient(180deg,#04060f,#070b16,#0b1020);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:92%;
+  max-width:1300px;
+  height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  z-index:999;
+  background:rgba(5, 8, 22, 0.4);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-icon{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  box-shadow: 0 10px 30px rgba(124,58,237,.4);
+  overflow: hidden;
+}
+
+.logo-img-inside {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.logo h2{
+  font-size:17px;
+  font-weight:700;
+}
+
+.logo p{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.nav-links{
+  display:flex;
+  gap:34px;
+}
+
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-btn{
+  padding:14px 22px;
+  border-radius:999px;
+  text-decoration:none;
+  color:white;
+  font-size:14px;
+  font-weight:600;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  transition:.3s;
+}
+
+.nav-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* HERO SECTION WITH FULL IMAGE BACKGROUND */
+.hero{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 160px 6% 100px;
+  overflow: hidden;
+}
+
+.hero-bg-carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to right, rgba(5, 8, 22, 0.85) 30%, rgba(5, 8, 22, 0.4) 70%, rgba(5, 8, 22, 0.85) 100%),
+    linear-gradient(to bottom, rgba(5, 8, 22, 0.4) 0%, rgba(5, 8, 22, 0.2) 50%, #04060f 100%);
+  z-index: 2;
+}
+
+.hero-content{
+  position: relative;
+  max-width: 800px;
+  z-index: 3;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(5px);
+  margin-bottom:30px;
+  color:#c4b5fd;
+  font-size:14px;
+}
+
+.badge-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#8b5cf6;
+  box-shadow: 0 0 20px #8b5cf6;
+}
+
+.hero h1{
+  font-size: 76px;
+  line-height: 1.1;
+  letter-spacing: -3px;
+  margin-bottom: 24px;
+  font-weight: 800;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+.hero h1 span{
+  background: linear-gradient(135deg, #a78bfa, #22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  font-size:19px;
+  line-height:1.8;
+  color:rgba(255, 255, 255, 0.8);
+  margin-bottom:36px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-stats-row {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 42px;
+  padding: 24px 34px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  width: fit-content;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.stat-item h2 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+.stat-item p {
+  font-size: 13px;
+  color: #c4b5fd;
+  margin-bottom: 0;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:16px 28px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+  transition:.35s;
+}
+
+.btn-primary{
+  color:white;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  box-shadow: 0 15px 40px rgba(124,58,237,.35);
+}
+
+.btn-primary:hover{
+  transform:translateY(-4px);
+}
+
+.btn-secondary{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  color:white;
+  backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover{
+  background:rgba(255,255,255,.15);
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 40px;
+  right: 6%;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dot.active {
+  background: var(--primary2);
+  width: 30px;
+  border-radius: 5px;
+}
+
+/* SECTION GLOBAL */
+section{
+  padding:120px 6%;
+}
+
+.section-head{
+  text-align:center;
+  max-width:760px;
+  margin:auto;
+  margin-bottom:70px;
+}
+
+.section-tag{
+  color:#c4b5fd;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  margin-bottom:16px;
+}
+
+.section-title{
+  font-size:58px;
+  letter-spacing:-2px;
+  margin-bottom:18px;
+  font-weight:800;
+}
+
+.section-desc{
+  color:var(--muted);
+  line-height:1.9;
+}
+
+/* EFISIENSI LAYANAN TUNGGAL - PREMIUM FEATURE CARD */
+.layanan-tunggal-box {
+  max-width: 900px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.03));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 36px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.layanan-tunggal-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.layanan-icon-huge {
+  font-size: 80px;
+  background: rgba(255,255,255,0.03);
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+.layanan-detail-text h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.layanan-detail-text p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+
+.gallery-item{
+  height:300px;
+  border-radius:34px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: var(--shadow);
+  transition:.4s;
+}
+
+.gallery-item:hover{
+  transform:translateY(-8px);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to top, rgba(5, 8, 22, 0.9) 0%, rgba(5, 8, 22, 0.2) 70%, transparent 100%);
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:flex-end;
+  padding-bottom: 30px;
+  opacity:0;
+  transition:.3s ease-in-out;
+}
+
+.gallery-overlay h4 {
+  font-size:20px;
+  font-weight:700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.gallery-item:hover .gallery-overlay{
+  opacity:1;
+}
+
+/* CONTACT & MAPS INTEGRATION */
+.contact{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:28px;
+}
+
+.contact-box{
+  padding:40px;
+  border-radius:32px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Google Maps Container */
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 15px;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.input{
+  width:100%;
+  margin-bottom:18px;
+  padding:18px 22px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  color:white;
+  outline:none;
+  transition:.3s;
+  font-family: 'Inter', sans-serif;
+}
+
+.input:focus{
+  border-color:#8b5cf6;
+}
+
+textarea.input{
+  min-height:150px;
+  resize:none;
+}
+
+/* FOOTER */
+footer{
+  padding:50px 6%;
+  text-align:center;
+  color:rgba(255,255,255,.4);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+/* REVEAL ON SCROLL */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* RESPONSIVE DESIGN BREAKPOINTS */
+@media(max-width:992px){
+  .hero{
+    padding-top: 140px;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero h1{
+    font-size:52px;
+  }
+  .hero-overlay {
+    background: linear-gradient(to bottom, rgba(5, 8, 22, 0.8) 0%, rgba(5, 8, 22, 0.6) 60%, #04060f 100%);
+  }
+  .hero-stats-row {
+    margin: 0 auto 36px auto;
+    gap: 30px;
+  }
+  .layanan-tunggal-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 34px;
+  }
+  .layanan-icon-huge {
+    margin: 0 auto;
+  }
+  .contact{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:768px){
+  nav{
+    top:10px;
+  }
+  .nav-links, .nav-btn{
+    display:none;
+  }
+  .hero h1{
+    font-size:38px;
+  }
+  .hero-stats-row {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 16px;
+  }
+  .stat-item h2 {
+    font-size: 28px;
+  }
+  .section-title{
+    font-size:36px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-icon">
+      <img src="images/logo.png" alt="Logo" class="logo-img-inside">
+    </div>
+    <div>
+      <h2>RT 03 RW 01</h2>
+      <p>Balaipanjang</p>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a href="#layanan">Layanan</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#kontak">Kontak</a>
+  </div>
+
+  <a href="#kontak" class="nav-btn">Hubungi Kami</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg-carousel">
+    <div class="hero-slide active">
+      <img src="images/bg5.png" alt="Lingkungan Hijau">
+    </div>
+    <div class="hero-slide">
+      <img src="images/bg2.jpeg" alt="Infrastruktur Modern">
+    </div>
+    <div class="hero-slide">
+      <img src="images/bg6.png" alt="Keamanan Smart Village">
+    </div>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-dots">
+    <div class="dot active" onclick="setSlide(0)"></div>
+    <div class="dot" onclick="setSlide(1)"></div>
+    <div class="dot" onclick="setSlide(2)"></div>
+  </div>
+
+  <div class="hero-content reveal active">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      Balepa03/01
+    </div>
+
+    <h1>
+      Balaipanjang<br>
+      <span>RT 03 RW 01</span>
+    </h1>
+
+    <p>
+      Platform layanan warga RT 03 RW 01 dengan pengalaman modern, cepat dan elegan untuk mendukung transformasi desa digital masa depan.
+    </p>
+
+    <div class="hero-stats-row">
+      <div class="stat-item">
+        <h2 id="kk">0</h2>
+        <p>Kepala Keluarga</p>
+      </div>
+      <div class="stat-item">
+        <h2 id="warga">0</h2>
+        <p>Total Warga</p>
+      </div>
+
+    </div>
+
+    <div class="hero-buttons">
+      <a href="#layanan" class="btn btn-primary">Mulai Layanan</a>
+      <a href="#galeri" class="btn btn-secondary">Lihat Galeri</a>
+    </div>
+  </div>
+</section>
+
+<section id="layanan">
+  <div class="section-head reveal">
+    <div class="section-tag">PELAYANAN MANDIRI</div>
+    <div class="section-title">Administrasi Warga</div>
+    <div class="section-desc">Pengurusan administrasi kependudukan tingkat RT menjadi jauh lebih mudah, efisien, dan serba digital tanpa perlu antre.</div>
+  </div>
+
+  <div class="layanan-tunggal-box reveal">
+    <div class="layanan-icon-huge">🪪</div>
+    <div class="layanan-detail-text">
+      <h3>Surat Pengantar KTP / KK / Lainya</h3>
+      <p>Layanan digital terpadu khusus bagi warga RT 03 RW 01 Balaipanjang untuk mengajukan permohonan Surat Pengantar pembuatan berkas kependudukan Kartu Tanda Penduduk (KTP) atau Kartu Keluarga (KK) atau surat pengantar lainya. Isikan form pengajuan secara lengkap, sistem akan langsung mengirimkannya langsung ke WhatsApp Ketua RT.</p>
+      <button class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px;" onclick="openFormSurat()">
+        📝 Ajukan Surat Pengantar Sekarang
+      </button>
+    </div>
+  </div>
+
+  <div id="popupFormSurat" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px);">
+    <div class="contact-box" style="max-width: 550px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h3>Form Surat Pengantar</h3>
+        <span style="cursor: pointer; font-size: 24px; color: var(--muted);" onclick="closeFormSurat()">&times;</span>
+      </div>
+      
+      <form id="formPengantarWarga" onsubmit="prosesSurat(event)">
+        <label style="font-size: 13px; color: var(--muted); display:block; margin-bottom: 6px;">Nama Lengkap (Sesuai KTP)</label>
+        <input type="text" id="wargaNama" class="input" required>
+        
+        <label style="font-size: 13px; color: var(--muted); display:block; margin-bottom: 6px;">NIK (Nomor Induk Kependudukan)</label>
+        <input type="number" id="wargaNik" class="input" required>
+        
+        <label style="font-size: 13px; color: var(--muted); display:block; margin-bottom: 6px;">Tempat, Tanggal Lahir</label>
+        <input type="text" id="wargaTtl" class="input" placeholder="Contoh: Surakarta, 12 Januari 1995" required>
+        
+        <label style="font-size: 13px; color: var(--muted); display:block; margin-bottom: 6px;">Alamat Rumah / No. Rumah</label>
+        <input type="text" id="wargaAlamat" class="input" required>
+        
+        <label style="font-size: 13px; color: var(--muted); display:block; margin-bottom: 6px;">Keperluan Pengajuan Surat</label>
+        <input type="text" id="wargaKeperluan" class="input" placeholder="Contoh: Permohonan Pembuatan KTP Baru" required>
+        
+        <label style="font-size: 13px; color: var(--muted); display:block; margin-bottom: 6px;">Nomor WhatsApp Anda</label>
+        <input type="tel" id="wargaWa" class="input" placeholder="Contoh: 081234567xxx" required>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer; margin-top: 10px;">
+          🚀 Kirim Data Pengajuan ke WA RT
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="galeri">
+  <div class="section-head reveal">
+    <div class="section-tag">DOKUMENTASI</div>
+    <div class="section-title">Aktivitas Warga</div>
+    <div class="section-desc">Kegiatan dan kebersamaan warga RT 03 RW 01 Balaipanjang.</div>
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-item reveal">
+      <img src="images/17agustus.jpeg" alt="Kegiatan 17 Agustus">
+      <div class="gallery-overlay">
+       
+      </div>
+    </div>
+    
+    <div class="gallery-item reveal">
+      <img src="images/foto3.jpeg" alt="Program Penghijauan">
+      <div class="gallery-overlay">
+        
+      </div>
+    </div>
+    
+    <div class="gallery-item reveal">
+      <img src="images/foto2.jpeg" alt="Kerja Bakti Rutin">
+      <div class="gallery-overlay">
+        
+      </div>
+    </div>
+    
+    <div class="gallery-item reveal">
+      <img src="images/foto1.jpeg" alt="Rapat Warga Berkala">
+      <div class="gallery-overlay">
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="section-head reveal">
+    <div class="section-tag">KONTAK</div>
+    <div class="section-title">Hubungi Kami</div>
+  </div>
+
+  <div class="contact">
+    <div class="contact-box reveal">
+      <h2 style="margin-bottom:10px">Lokasi RT 03 RW 01</h2>
+      <p style="color:var(--muted); font-size:15px; margin-bottom:15px;">
+        📍 Dusun Balaipanjang Kel. Balaipanjang
+      </p>
+      
+      <div class="map-wrapper">
+  <iframe 
+    src="https://maps.google.com/maps?q=Balepanjang,%20Cisumur,%20Cilacap&t=&z=14&ie=UTF-8&iwloc=&output=embed" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+    </div>
+
+    <div class="contact-box reveal">
+      <h2 style="margin-bottom:24px">Kirim Pesan</h2>
+      <form id="formHubungiKami" onsubmit="kirimKeWorksheet(event)">
+        <input type="text" id="kontakNama" class="input" placeholder="Nama Lengkap" required>
+        <input type="number" id="kontakTelepon" class="input" placeholder="Nomor Telepon / WA" required>
+        <textarea id="kontakPesan" class="input" placeholder="Tulis pesan atau pertanyaan Anda di sini..." required></textarea>
+        <button type="submit" id="btnSubmitKontak" class="btn btn-primary" style="border:none; cursor:pointer; width:100%;">
+          ✉️ Kirim Pesan
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © RT 03 RW 01 Balaipanjang — BY Kartar Balepa 03
+</footer>
+
+<script>
+/* ==================== CONFIGURATION ==================== */
+const NOMOR_WA_RT = "6285868147692"; 
+
+// GANTI DENGAN URL WEB APP GOOGLE APPS SCRIPT YANG SUDAH KAMU DEPLOY
+const SCRIPT_URL_SHEETS = "https://script.google.com/macros/s/AKfycbz7WnQlkaEbwWCfIrzy4I-1VVwzTvYZ0WC12ISLMYbmMCTB0iLwrofQXKEiktK4WeWw/exec"; 
+
+/* ==================== COUNTER SYSTEM ==================== */
+function counter(id,target,speed){
+  let el=document.getElementById(id);
+  let count=0;
+  let interval=setInterval(()=>{
+    count++;
+    el.innerText=count;
+    if(count>=target){
+      clearInterval(interval);
+    }
+  },speed);
+}
+counter('kk',32,30);
+counter('warga',128,10);
+
+
+/* ==================== HERO BACKGROUND CAROUSEL ==================== */
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.dot');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  slides[index].classList.add('active');
+  dots[index].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+}
+
+function setSlide(index) {
+  currentSlide = index;
+  showSlide(currentSlide);
+}
+setInterval(nextSlide, 5000);
+
+/* ==================== POPUP FORM & WA DIRECT ACTION ==================== */
+function openFormSurat() {
+  document.getElementById('popupFormSurat').style.display = 'flex';
+}
+
+function closeFormSurat() {
+  document.getElementById('popupFormSurat').style.display = 'none';
+}
+
+function prosesSurat(event) {
+  event.preventDefault();
+  
+  const nama = document.getElementById('wargaNama').value;
+  const nik = document.getElementById('wargaNik').value;
+  const ttl = document.getElementById('wargaTtl').value;
+  const alamat = document.getElementById('wargaAlamat').value;
+  const keperluan = document.getElementById('wargaKeperluan').value;
+  const waWarga = document.getElementById('wargaWa').value;
+  
+  const teksPesan = `Halo Pak RT, saya ingin mengajukan *Surat Pengantar KTP/KK*.\n\n` +
+                    `Berikut adalah rincian data lengkap saya:\n` +
+                    `• *Nama* : ${nama}\n` +
+                    `• *NIK* : ${nik}\n` +
+                    `• *Tempat, Tgl Lahir* : ${ttl}\n` +
+                    `• *Alamat* : ${alamat}\n` +
+                    `• *Keperluan* : ${keperluan}\n` +
+                    `• *No. WA Saya* : ${waWarga}\n\n` +
+                    `Mohon untuk dapat dikonfirmasi dan dibuatkan surat pengantarnya, Pak. Terima kasih banyak.\n\n` +
+                    `-------------------------------------------\n` +
+                    `*PANDUAN KIRIM BALIK (UNTUK PAK RT)*:\n` +
+                    `Jika surat pengantar sudah selesai dibuat, Pak RT bisa langsung mengirimkan kembali dokumennya ke nomor warga lewat link ini:\n` +
+                    `👉 https://wa.me/${waWarga.replace(/^0/, '62')}`;
+  
+  const urlWhatsApp = `https://api.whatsapp.com/send?phone=${NOMOR_WA_RT}&text=${encodeURIComponent(teksPesan)}`;
+  
+  window.open(urlWhatsApp, '_blank');
+  
+  closeFormSurat();
+  document.getElementById('formPengantarWarga').reset();
+}
+
+/* ==================== AJAX SUBMIT TO GOOGLE SHEETS ==================== */
+function kirimKeWorksheet(event) {
+  event.preventDefault();
+  
+  const btnSubmit = document.getElementById('btnSubmitKontak');
+  const nama = document.getElementById('kontakNama').value;
+  const telepon = document.getElementById('kontakTelepon').value;
+  const pesan = document.getElementById('kontakPesan').value;
+  
+  btnSubmit.innerText = "Mengirim...";
+  btnSubmit.disabled = true;
+  
+  const payload = {
+    nama: nama,
+    telepon: telepon,
+    pesan: pesan
+  };
+  
+  fetch(SCRIPT_URL_SHEETS, {
+    method: "POST",
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    alert("Terima kasih! Pesan Anda telah berhasil disimpan di Worksheet RT.");
+    document.getElementById('formHubungiKami').reset();
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Pesan gagal dikirim. Pastikan URL Web App Google Script Anda sudah benar.");
+  })
+  .finally(() => {
+    btnSubmit.innerText = "✉️ Kirim Pesan";
+    btnSubmit.disabled = false;
+  });
+}
+
+/* ==================== REVEAL ON SCROLL ENGINE ==================== */
+const reveals=document.querySelectorAll('.reveal');
+function checkReveal() {
+  reveals.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      el.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', checkReveal);
+window.addEventListener('DOMContentLoaded', checkReveal);
+</script>
+
+</body>
+</html>
